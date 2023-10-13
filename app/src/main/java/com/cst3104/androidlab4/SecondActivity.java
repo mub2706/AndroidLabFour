@@ -55,14 +55,26 @@ public class SecondActivity extends AppCompatActivity {
 
         Intent fromPrevious = getIntent();
         String emailAddress = fromPrevious.getStringExtra("EmailAddress");
-       
 
+
+        int MY_PERMISSIONS_REQUEST_CAMERA=0;
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA );
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
         // Retrieve data from Shared Preferences
         SharedPreferences prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
 
 
         // Set the retrieved email address in TextView
         textView3.setText(emailAddress);
+
+        setCaptureImage();
 
         cameraResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
