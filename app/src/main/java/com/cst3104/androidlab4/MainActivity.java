@@ -32,14 +32,6 @@ public class MainActivity extends AppCompatActivity {
             nextPage.putExtra("EmailAddress", email);
             startActivity(nextPage);
 
-            Intent call = new Intent(Intent.ACTION_DIAL);
-            String phoneNumber = "20042706"; // Replace with the desired phone number
-            call.setData(Uri.parse("tel:" + phoneNumber));
-            startActivity(call);
-
-            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            startActivity(intent);
-
         });
     }
     @Override
